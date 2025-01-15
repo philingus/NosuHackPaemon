@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gba-purple: #332640;
+  --gba-purple-light: #4A3B55;
+  --gba-screen: #7BA1A8;
+  --gba-screen-dark: #5A8087;
+  --gba-accent: #E0757C;
+  --gba-button: #2D1B2E;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  image-rendering: pixelated;
+  background: linear-gradient(135deg, var(--gba-purple) 0%, var(--gba-purple-light) 100%);
+}
+
+@layer components {
+  .gba-container {
+    @apply bg-[#332640] p-6 rounded-2xl shadow-xl border-2 border-[#4A3B55]
+    transition-all duration-300 hover:shadow-2xl;
+  }
+  
+  .gba-screen {
+    @apply bg-[#7BA1A8] p-4 rounded-lg border-4 border-[#5A8087] shadow-inner
+    transition-all duration-300;
+  }
+  
+  .gba-button {
+    @apply px-4 py-2 bg-[#2D1B2E] text-[#E0757C] rounded-lg 
+    hover:bg-[#4A3B55] transition-all duration-200
+    active:transform active:scale-95 font-bold
+    border-2 border-[#E0757C] shadow-md
+    hover:shadow-lg hover:-translate-y-0.5
+    focus:ring-2 focus:ring-[#E0757C] focus:ring-opacity-50;
+  }
+
+  .gba-input {
+    @apply bg-[#5A8087] text-white rounded-lg p-2 
+    border-2 border-[#7BA1A8] focus:outline-none 
+    focus:border-[#E0757C] transition-all duration-200
+    hover:border-[#E0757C] focus:ring-2 focus:ring-[#E0757C]
+    focus:ring-opacity-50;
+  }
+
+  /* Magic Loops inspired animations */
+  .fade-in {
+    @apply opacity-0 animate-[fadeIn_0.5s_ease-in_forwards];
+  }
+
+  .slide-up {
+    @apply translate-y-4 opacity-0 animate-[slideUp_0.5s_ease-out_forwards];
+  }
+
+  .bounce-in {
+    @apply scale-95 opacity-0 animate-[bounceIn_0.5s_cubic-bezier(0.8,0,0.2,1)_forwards];
+  }
+
+  /* Card-specific styles */
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
